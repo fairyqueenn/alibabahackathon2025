@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 8000
 
 # Perintah default untuk menjalankan aplikasi. Ini bisa di-override oleh docker-compose.yml
-CMD ["python", "main.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
