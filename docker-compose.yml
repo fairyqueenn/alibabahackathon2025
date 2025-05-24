@@ -1,0 +1,13 @@
+# docker-compose.yml
+version: '3.8' # Gunakan versi Compose terbaru yang Anda miliki atau inginkan
+
+services:
+  # Layanan aplikasi Python Anda
+  web:
+    build:
+      context: . # Konteks build (direktori tempat Dockerfile berada)
+      dockerfile: Dockerfile # Nama Dockerfile
+    ports:
+      - "8000:8000" # Memetakan port host:kontainer
+    volumes:
+      - .:/app # Opsi: Mount kode lokal ke dalam kontainer untuk pengembangan
