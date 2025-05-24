@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException, UploadFile, File
 import base64
 from uuid import uuid4
 from pydantic import BaseModel
+from api.tools import prompt_templates
 from loguru import logger
 from dotenv import load_dotenv
 load_dotenv()
@@ -38,7 +39,6 @@ async def upload_image(file: UploadFile = File(...)):
 
 class ReviewRequest(BaseModel):
     image_id: str
-    query: str
 
 @router.post("/image_reviewer")
 def image_reviewer(request: ReviewRequest):
@@ -54,7 +54,7 @@ def image_reviewer(request: ReviewRequest):
                 "role": "user",
                 "content": [
                     {"image": image_data_url},
-                    {"text": request.query}
+                    {"text": prompt_templates.prompts.image_reviewer}
                 ]
             }
         ]
