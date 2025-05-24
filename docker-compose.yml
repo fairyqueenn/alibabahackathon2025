@@ -1,45 +1,12 @@
 # docker-compose.yml
-version: '3.8' # Gunakan versi Compose terbaru yang Anda miliki atau inginkan
 
 services:
   # Layanan aplikasi Python Anda
   web:
     build:
-      context: .        # Konteks build (direktori tempat Dockerfile dan kode aplikasi berada)
-      dockerfile: Dockerfile # Nama Dockerfile untuk layanan ini
+      context: . # Konteks build (direktori tempat Dockerfile berada)
+      dockerfile: Dockerfile # Nama Dockerfile
     ports:
-      - "8000:8000"     # Memetakan port host (kiri) ke port kontainer (kanan)
+      - "8000:8000" # Memetakan port host:kontainer
     volumes:
-      # Opsi: Mount kode lokal ke dalam kontainer untuk pengembangan.
-      # Perubahan pada kode lokal akan langsung terlihat tanpa rebuild image.
-      # Hapus baris ini untuk lingkungan produksi agar kode di-bake ke dalam image.
-      - .:/app
-    environment:
-      # Variabel lingkungan untuk aplikasi Python Anda
-      PYTHONUNBUFFERED: 1 # Penting untuk melihat output log Python secara real-time
-      # Contoh variabel lingkungan untuk koneksi database (sesuaikan dengan nama layanan db di bawah)
-      DATABASE_URL: "postgresql://user:password@db:5432/mydatabase"
-    depends_on:
-      # Mendefinisikan ketergantungan. Layanan 'web' akan dimulai setelah 'db' dimulai.
-      # Ini hanya menjamin urutan start, bukan kesiapan layanan.
-      - db
-    # Perintah yang akan dijalankan saat kontainer 'web' dimulai.
-    # Ini akan meng-override CMD di Dockerfile jika ada. Sesuaikan dengan cara aplikasi Anda dijalankan.
-    command: ["python", "app.py"] # Contoh: Menjalankan file app.py
-
-  # Contoh layanan database PostgreSQL
-  db:
-    image: postgres:13  # Menggunakan image PostgreSQL versi 13
-    environment:
-      # Variabel lingkungan untuk mengkonfigurasi database PostgreSQL
-      POSTGRES_DB: mydatabase
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-    volumes:
-      # Volume persisten untuk menyimpan data database.
-      # Data akan tetap ada meskipun kontainer dihentikan atau dihapus.
-      - db_data:/var/lib/postgresql/data
-
-# Definisi volume (untuk data persisten)
-volumes:
-  db_data: # Mendefinisikan volume bernama 'db_data' yang digunakan oleh layanan 'db'
+      - .:/app # Opsi: Mount kode lokal ke dalam kontainer untuk pengembangan
