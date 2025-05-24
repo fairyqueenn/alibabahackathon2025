@@ -19,7 +19,7 @@ services:
 
   # Layanan database PostgreSQL
   db:
-    image: postgres:15
+    image: pgvector/pgvector:pg15
     container_name: my-postgres
     restart: always
     environment:
@@ -30,6 +30,14 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    # Optional: Add initialization script to enable extension
+    command: >
+      bash -c "
+      docker-entrypoint.sh postgres &
+      sleep 10 &&
+      PGPASSWORD=postgres psql -h localhost -U postgres -d mydatabase -c 'CREATE EXTENSION IF NOT EXISTS vector;' &&
+      wait
+      "
 
 volumes:
   postgres_data:
