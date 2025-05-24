@@ -10,3 +10,6 @@ services:
       - "8000:8000" # Memetakan port host:kontainer
     volumes:
       - .:/app # Opsi: Mount kode lokal ke dalam kontainer untuk pengembangan
+
+    env_file:
+      - .env    
