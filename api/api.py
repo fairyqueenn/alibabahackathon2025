@@ -19,11 +19,6 @@ from langchain_postgres import PGVector
 
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.prompts import PromptTemplate
-import faiss
-from langchain_community.docstore.in_memory import InMemoryDocstore
-from langchain_community.vectorstores import FAISS
-from langchain_core.documents import Document
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 
 from dotenv import load_dotenv
@@ -119,12 +114,11 @@ def image_reviewer(request: ReviewRequest):
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
-    
-class ReviewRequest(BaseModel):
+
+class RecRquest(BaseModel):
     query: str
-    
 @router.post("/embedding_query")
-def embedding_query(request: queryRequest):
+def embedding_query(request: RecRquest):
     try:
         # Validate API key
         api_key = os.getenv("MODEL_API_KEY")
@@ -132,21 +126,18 @@ def embedding_query(request: queryRequest):
             raise ValueError("MODEL_API_KEY environment variable is not set")
         
         print(f"API Key loaded: {api_key[:10]}..." if len(api_key) > 10 else "API Key too short")
-        embeddings = DashScopeEmbeddings(
-            model="text-embedding-v3", 
-            dashscope_api_key=api_key
-        )
-        # Initialize embeddings and vector store
-        embeddings_dim = len(embeddings.embed_query('hello world'))
-        index = faiss.IndexFlatL2(embeddings_dim)
-        vector_store = FAISS(
-            embedding_function=embeddings,
-            index=index,
-            docstore=InMemoryDocstore(),
-            index_to_docstore_id={}
-        )
         
-        # Initialize model
+        # Initialize embeddings and model
+        try:
+            embeddings = DashScopeEmbeddings(
+                model="text-embedding-v3", 
+                dashscope_api_key=api_key
+            )
+            print("Embeddings initialized successfully")
+        except Exception as e:
+            print(f"Error initializing embeddings: {e}")
+            raise
+        
         try:
             model = ChatQwQ(
                 model="qwen-plus-latest",
@@ -163,47 +154,123 @@ def embedding_query(request: queryRequest):
             loader = TextLoader(r"data\indonesian_food_health_categories_cleaned.csv")
             docs = loader.load()
             
-            print("Splitting document into chunks")
-            text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+            if not docs:
+                raise ValueError("No documents loaded from file")
+            
+            text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
             all_splits = text_splitter.split_documents(docs)
+            print(f"Successfully split documents into {len(all_splits)} chunks")
             
             if not all_splits:
                 raise ValueError("No document chunks created")
-            
-            print("Indexing chunks")
-            vector_store.add_documents(documents=all_splits)
                 
         except Exception as e:
             print(f"Error processing documents: {e}")
             raise
         
-        # Retrieve relevant documents
+        # Initialize PostgreSQL connection
         try:
-            retriever = vector_store.as_retriever()
-            retrieved_docs = retriever.get_relevant_documents(request.query)
+            PG_HOST = os.getenv("PG_HOST")
+            PG_PORT = os.getenv("PG_PORT") 
+            PG_DATABASE = os.getenv("PG_DB")
+            PG_USER = os.getenv("PG_USER")
+            PG_PASSWORD = os.getenv("PG_PASSWORD")
+            
+            # Validate all required environment variables
+            pg_vars = {
+                "PG_HOST": PG_HOST,
+                "PG_PORT": PG_PORT,
+                "PG_DATABASE": PG_DATABASE,
+                "PG_USER": PG_USER,
+                "PG_PASSWORD": PG_PASSWORD
+            }
+            
+            missing_vars = [k for k, v in pg_vars.items() if not v]
+            if missing_vars:
+                raise ValueError(f"Missing PostgreSQL environment variables: {missing_vars}")
+
+            connection = f"postgresql+psycopg://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DATABASE}"
+            print("PostgreSQL connection string created")
+            
+        except Exception as e:
+            print(f"Error setting up PostgreSQL connection: {e}")
+            raise
+        
+        # Initialize vector store
+        try:
+            collection_name = "new_food_recommender"
+            vector_store = PGVector(
+                embeddings=embeddings,
+                collection_name=collection_name,
+                connection=connection,
+                use_jsonb=True,
+            )
+            print("Vector store initialized successfully")
+            
+        except Exception as e:
+            print(f"Error initializing vector store: {e}")
+            raise
+        
+        # Add documents to vector store (with batch processing)
+        try:
+            print(f"Indexing {len(all_splits)} chunks...")
+            
+            # Process in smaller batches to avoid memory issues
+            batch_size = 50
+            for i in range(0, len(all_splits), batch_size):
+                batch = all_splits[i:i+batch_size]
+                print(batch)
+                print(f"Processing batch {i//batch_size + 1}: documents {i+1}-{min(i+batch_size, len(all_splits))}")
+                vector_store.add_documents(documents=batch)
+            
+            print("Successfully indexed all chunks into vector store")
+            
+        except Exception as e:
+            print(f"Error indexing documents: {e}")
+            raise
+        
+        # Process query
+        try:
+            query_text = request.query
+
+            if not query_text or not query_text.strip():
+                raise ValueError("Query text is empty")
+                
+            print(f"Processing query: {query_text}")
+            
+        except Exception as e:
+            print(f"Error processing query: {e}")
+            raise
+        
+        # Retrieve similar documents
+        try:
+            print("Finding relevant documents...")
+            # Reduce k and fetch_k to avoid potential issues
+            retrieved_docs = vector_store.similarity_search(query_text, k=5)
+            print(f"Found {len(retrieved_docs)} relevant documents")
             
             if not retrieved_docs:
-                return {
-                    "response": "No relevant documents found for your query.",
-                    "documents_found": 0,
-                    "status": "success"
-                }
-            
-            # Combine document content
-            print("Combining all chunks")
-            docs_content = "\n\n".join(doc.page_content for doc in retrieved_docs)
-            print("Combined docs:", docs_content)
-            
-            # Generate response using LLM
-            print("Ingesting to LLM")
+                print("Warning: No relevant documents found")
+                
+        except Exception as e:
+            print(f"Error retrieving documents: {e}")
+            raise
+        
+        # Generate response
+        try:
+            # Initialize prompt template
             prompt = ChatPromptTemplate.from_template(prompt_templates.prompts.food_recommender)
-
-            messages = prompt.invoke({"question": ReviewRequest.query, "context": docs_content})
-            print("===Query===")
-            print(messages)
+            
+            # Combine document contents
+            docs_content = "\n\n".join(doc.page_content for doc in retrieved_docs) if retrieved_docs else "No relevant documents found."
+            print(f"Combined docs length: {len(docs_content)} characters")
+            
+            # Generate LLM response
+            print("Generating LLM response...")
+            messages = prompt.invoke({"question": query_text, "context": docs_content})
             
             response = model.invoke(messages)
-            print("Response:", response)
+            print("Response generated successfully")
             
             return {
                 "response": response.content if hasattr(response, 'content') else str(response),
