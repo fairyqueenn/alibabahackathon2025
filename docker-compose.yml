@@ -1,4 +1,4 @@
-# docker-compose.yml
+version: '3.8'
 
 services:
   # Layanan aplikasi Python Anda
@@ -9,7 +9,24 @@ services:
     ports:
       - "8000:8000" # Memetakan port host:kontainer
     volumes:
-      - .:/app # Opsi: Mount kode lokal ke dalam kontainer untuk pengembangan
-
+      - .:/app # Mount kode lokal ke dalam kontainer untuk pengembangan
     env_file:
-      - .env    
+      - .env
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/mydatabase
+
+  # Layanan database PostgreSQL
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
