@@ -47,11 +47,4 @@ Millions with diabetes, hypertension, and other conditions struggle to choose sa
 
 ---
 
-## 📌 Why It Matters
-
-- **Health**: Safer food for people with chronic conditions  
-- **Environment**: Promotes sustainable packaging  
-- **Inclusion**: Supports local languages (e.g., Javanese, Sundanese)  
-
----
 
