@@ -39,6 +39,7 @@ async def upload_image(file: UploadFile = File(...)):
 
 class ReviewRequest(BaseModel):
     image_id: str
+    description: str
 
 @router.post("/image_reviewer")
 def image_reviewer(request: ReviewRequest):
@@ -54,14 +55,18 @@ def image_reviewer(request: ReviewRequest):
                 "role": "user",
                 "content": [
                     {"image": image_data_url},
-                    {"text": prompt_templates.prompts.image_reviewer}
+                    {"text": prompt_templates.prompts.image_reviewer.format(description=request.description)}
                 ]
             }
         ]
         response = dashscope.MultiModalConversation.call(
             api_key=os.getenv('MODEL_API_KEY'),
             model='qwen-vl-plus-latest',
-            messages=messages
+            messages=messages,
+            temperature=0.0,
+            max_tokens=1500,
+            
+        
         )
         logger.info(f"Response: {response}")
 
