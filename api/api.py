@@ -3,9 +3,12 @@ import dashscope
 
 from fastapi import APIRouter, HTTPException, UploadFile, File
 import base64
-import uuid4
+from uuid import uuid4
 from pydantic import BaseModel
 from loguru import logger
+from dotenv import load_dotenv
+load_dotenv()
+
 
 router = APIRouter()
 
@@ -38,15 +41,12 @@ class ReviewRequest(BaseModel):
     query: str
 
 @router.post("/image_reviewer")
-def image_reviewer(request: queryRequest):
-    """
-    Execute an SQL query via FastAPI endpoint.
-    """
+def image_reviewer(request: ReviewRequest):
     try:
-        image_data_url = image_store.get(request.query)
+        image_data_url = image_store.get(request.image_id)
+        print(f"Image data URL: {image_data_url}")
         if not image_data_url:
             raise HTTPException(status_code=404, detail="Image not found.")
-        
         
         dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'
         messages = [
@@ -54,21 +54,46 @@ def image_reviewer(request: queryRequest):
                 "role": "user",
                 "content": [
                     {"image": image_data_url},
-                    {"text": "What are these?"}
+                    {"text": request.query}
                 ]
             }
         ]
         response = dashscope.MultiModalConversation.call(
-            # If environment variable is not configured, replace the line below with: api_key="sk-xxx",
             api_key=os.getenv('MODEL_API_KEY'),
-            # This example uses qwen-vl-max. You can change the model name as needed. Model list: https://www.alibabacloud.com/help/zh/model-studio/getting-started/models
             model='qwen-vl-plus-latest',
             messages=messages
-            )
+        )
         logger.info(f"Response: {response}")
-        return response
+        
+        # Convert the response to a serializable format
+        try:
+            # The dashscope response object acts like a dict, so we can convert it directly
+            serializable_response = dict(response)
+        except Exception as e:
+            logger.warning(f"Could not convert response to dict: {e}")
+            # Fallback: manually extract the data structure
+            serializable_response = {
+                "status_code": getattr(response, 'status_code', None),
+                "request_id": getattr(response, 'request_id', None),
+                "code": getattr(response, 'code', None),
+                "message": getattr(response, 'message', None),
+                "output": dict(response.output) if hasattr(response, 'output') else None,
+                "usage": dict(response.usage) if hasattr(response, 'usage') else None
+            }
+        
+        # Extract just the text result if you only need that
+        result_text = None
+        try:
+            if hasattr(response, 'output') and hasattr(response.output, 'choices'):
+                result_text = response.output.choices[0].message.content[0]['text']
+        except (AttributeError, IndexError, KeyError, TypeError) as e:
+            logger.warning(f"Could not extract text from response: {e}")
+
+        return {
+            "result": serializable_response,
+            "text": result_text  # Include extracted text for convenience
+        }
+        
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
-    
-
