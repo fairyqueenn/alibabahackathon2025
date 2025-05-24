@@ -1,0 +1,221 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "dashscope",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dashscope",
+        "description": "dashscope",
+        "detail": "dashscope",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "uuid4",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "api.api",
+        "description": "api.api",
+        "isExtraImport": true,
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "setup_middleware",
+        "importPath": "router.middleware",
+        "description": "router.middleware",
+        "isExtraImport": true,
+        "detail": "router.middleware",
+        "documentation": {}
+    },
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "queryRequest",
+        "kind": 6,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "class queryRequest(BaseModel):\n    query:str\nimage_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:\n        file_bytes = await file.read()\n        image_base64 = base64.b64encode(file_bytes).decode('utf-8')\n        image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'\n        image_data_url = f\"data:image/{image_format};base64,{image_base64}\"",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "ReviewRequest",
+        "kind": 6,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "class ReviewRequest(BaseModel):\n    image_id: str\n    query: str\n@router.post(\"/image_reviewer\")\ndef image_reviewer(request: ReviewRequest):\n    try:\n        image_data_url = image_store.get(request.image_id)\n        print(f\"Image data URL: {image_data_url}\")\n        if not image_data_url:\n            raise HTTPException(status_code=404, detail=\"Image not found.\")",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "image_reviewer",
+        "kind": 2,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "def image_reviewer(request: ReviewRequest):\n    try:\n        image_data_url = image_store.get(request.image_id)\n        print(f\"Image data URL: {image_data_url}\")\n        if not image_data_url:\n            raise HTTPException(status_code=404, detail=\"Image not found.\")\n        dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\n        messages = [\n            {\n                \"role\": \"user\",",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "router = APIRouter()\nclass queryRequest(BaseModel):\n    query:str\nimage_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:\n        file_bytes = await file.read()\n        image_base64 = base64.b64encode(file_bytes).decode('utf-8')\n        image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "image_store",
+        "kind": 5,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "image_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:\n        file_bytes = await file.read()\n        image_base64 = base64.b64encode(file_bytes).decode('utf-8')\n        image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'\n        image_data_url = f\"data:image/{image_format};base64,{image_base64}\"\n        image_id = str(uuid4())\n        image_store[image_id] = image_data_url",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "setup_middleware",
+        "kind": 2,
+        "importPath": "router.middleware",
+        "description": "router.middleware",
+        "peekOfCode": "def setup_middleware(app):\n    # Middleware untuk CORS\n    app.add_middleware(\n        CORSMiddleware,\n        allow_origins=[\"*\"],  # Ganti dengan domain spesifik jika perlu\n        allow_credentials=True,\n        allow_methods=[\"*\"],\n        allow_headers=[\"*\"],\n    )\n    @app.middleware(\"http\")",
+        "detail": "router.middleware",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\n# Initialize DB connection on startup\nsetup_middleware(app)\napp.include_router(router)\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(\"main:app\", host=\"0.0.0.0\", port=8000, reload=True)",
+        "detail": "main",
+        "documentation": {}
+    }
+]

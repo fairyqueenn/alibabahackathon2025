@@ -25,7 +25,7 @@ async def upload_image(file: UploadFile = File(...)):
         image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'
 
         image_data_url = f"data:image/{image_format};base64,{image_base64}"
-        
+
         image_id = str(uuid4())
         image_store[image_id] = image_data_url
 
@@ -47,7 +47,7 @@ def image_reviewer(request: ReviewRequest):
         print(f"Image data URL: {image_data_url}")
         if not image_data_url:
             raise HTTPException(status_code=404, detail="Image not found.")
-        
+
         dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'
         messages = [
             {
@@ -64,11 +64,11 @@ def image_reviewer(request: ReviewRequest):
             messages=messages
         )
         logger.info(f"Response: {response}")
-        
+
         # Convert the response to a serializable format
         try:
             # The dashscope response object acts like a dict, so we can convert it directly
-            serializable_response = dict(response)
+            serializable_response = {} # TODO: adjust for keperluan
         except Exception as e:
             logger.warning(f"Could not convert response to dict: {e}")
             # Fallback: manually extract the data structure
@@ -80,7 +80,7 @@ def image_reviewer(request: ReviewRequest):
                 "output": dict(response.output) if hasattr(response, 'output') else None,
                 "usage": dict(response.usage) if hasattr(response, 'usage') else None
             }
-        
+
         # Extract just the text result if you only need that
         result_text = None
         try:
@@ -93,7 +93,7 @@ def image_reviewer(request: ReviewRequest):
             "result": serializable_response,
             "text": result_text  # Include extracted text for convenience
         }
-        
+
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
