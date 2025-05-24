@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 8000
 
 # Perintah default untuk menjalankan aplikasi. Ini bisa di-override oleh docker-compose.yml
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
