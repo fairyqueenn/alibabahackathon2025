@@ -7,6 +7,6 @@ services:
       context: . # Konteks build (direktori tempat Dockerfile berada)
       dockerfile: Dockerfile # Nama Dockerfile
     ports:
-      - "8000:8000" # Memetakan port host:kontainer
+      - "80:80" # Memetakan port host:kontainer
     volumes:
       - .:/app # Opsi: Mount kode lokal ke dalam kontainer untuk pengembangan

@@ -20,7 +20,7 @@ RUN uv pip install -r requirements.txt --system
 COPY . .
 
 # Paparkan port yang akan digunakan aplikasi Anda (jika aplikasi Anda adalah web server)
-EXPOSE 8000
+EXPOSE 80
 
 # Perintah default untuk menjalankan aplikasi. Ini bisa di-override oleh docker-compose.yml
 CMD ["python", "main.py"]
