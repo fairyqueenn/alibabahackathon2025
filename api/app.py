@@ -3,7 +3,7 @@ import dashscope
 
 from fastapi import APIRouter, HTTPException, UploadFile, File
 import base64
-
+import uuid4
 from pydantic import BaseModel
 from loguru import logger
 
@@ -33,19 +33,27 @@ async def upload_image(file: UploadFile = File(...)):
         logger.error(f"Image upload failed: {e}")
         raise HTTPException(status_code=500, detail="Failed to upload image.")
 
+class ReviewRequest(BaseModel):
+    image_id: str
+    query: str
+
 @router.post("/image_reviewer")
 def image_reviewer(request: queryRequest):
     """
     Execute an SQL query via FastAPI endpoint.
     """
     try:
+        image_data_url = image_store.get(request.query)
+        if not image_data_url:
+            raise HTTPException(status_code=404, detail="Image not found.")
+        
         
         dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'
         messages = [
             {
                 "role": "user",
                 "content": [
-                    {"image": "https://dashscope.oss-cn-beijing.aliyuncs.com/images/rabbit.png"},
+                    {"image": image_data_url},
                     {"text": "What are these?"}
                 ]
             }
