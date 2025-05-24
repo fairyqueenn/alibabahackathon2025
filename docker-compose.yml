@@ -28,6 +28,8 @@ services:
       POSTGRES_DB: mydatabase
     ports:
       - "5432:5432"
+    env_file:
+      - .env
     volumes:
       - postgres_data:/var/lib/postgresql/data
     # Optional: Add initialization script to enable extension
