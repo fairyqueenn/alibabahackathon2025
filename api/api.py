@@ -151,7 +151,7 @@ def embedding_query(request: RecRquest):
         
         # Load and process documents
         try:
-            loader = TextLoader(r"data\indonesian_food_health_categories_cleaned.csv")
+            loader = TextLoader("data/indonesian_food_health_categories_cleaned.csv")
             docs = loader.load()
             
             if not docs:
