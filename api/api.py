@@ -23,6 +23,8 @@ from langchain_core.prompts import PromptTemplate
 
 from dotenv import load_dotenv
 load_dotenv()
+api_key=os.getenv('MODEL_API_KEY')
+dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'
 
 import warnings
 warnings.filterwarnings("ignore", category=RuntimeWarning, module="numpy")
@@ -119,6 +121,7 @@ class RecRquest(BaseModel):
     query: str
 @router.post("/embedding_query")
 def embedding_query(request: RecRquest):
+    
     try:
         # Validate API key
         api_key = os.getenv("MODEL_API_KEY")
