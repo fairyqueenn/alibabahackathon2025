@@ -40,7 +40,7 @@ func main() {
 		zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	}
 
-	if err := godotenv.Load(envLocation); err != nil {
+	if err := godotenv.Load(); err != nil {
 		log.Fatal("error while loading or open .env file, err: ", err.Error())
 	}
 
