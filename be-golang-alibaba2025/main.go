@@ -26,24 +26,29 @@ import (
 )
 
 func main() {
-	isProduction := flag.Bool("production", true, "production mode?")
-	flag.Parse()
+	isDocker := os.Getenv("IS_DOCKER") == "true"
 
-	_, b, _, _ := runtime.Caller(0)
-	projectRootPath := filepath.Join(filepath.Dir(b), "")
-	envLocation := projectRootPath + "/.env"
+envLocation := ".env" // default
+if isDocker {
+    log.Println("Running in Docker. Loading default .env in container...")
+    envLocation = ".env" // let docker handle file location via mounting
+} else {
+    log.Println("Running locally. Using project root .env...")
+    _, b, _, _ := runtime.Caller(0)
+    projectRootPath := filepath.Join(filepath.Dir(b), "")
+    envLocation = filepath.Join(projectRootPath, ".env")
+}
 
-	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
-	zerolog.SetGlobalLevel(zerolog.DebugLevel)
-	if *isProduction {
-		envLocation = "/www/wwwroot/be.alibaba2025/.env"
-		zerolog.SetGlobalLevel(zerolog.InfoLevel)
-	}
+zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
+if isDocker {
+    zerolog.SetGlobalLevel(zerolog.InfoLevel)
+} else {
+    zerolog.SetGlobalLevel(zerolog.DebugLevel)
+}
 
-	if err := godotenv.Load(); err != nil {
-		log.Fatal("error while loading or open .env file, err: ", err.Error())
-	}
-
+if err := godotenv.Load(envLocation); err != nil {
+    log.Fatal("Error loading .env file: ", err.Error())
+}
 	constant.InitDBConstant()
 	constant.InitAuthConstant()
 	constant.InitRedisConstant()
