@@ -9,10 +9,10 @@ import (
 
 var RedisClient *redis.Client
 
-func InitRedis() {
+func InitRedis() *redis.Client {
 	host := os.Getenv("REDIS_HOST")
 	if host == "" {
-		host = "localhost" // fallback default, harusnya "redis" saat pakai docker-compose
+		host = "localhost"
 	}
 
 	port := os.Getenv("REDIS_PORT")
@@ -22,9 +22,8 @@ func InitRedis() {
 
 	addr := fmt.Sprintf("%s:%s", host, port)
 
-	RedisClient = redis.NewClient(&redis.Options{
+	return redis.NewClient(&redis.Options{
 		Addr: addr,
-		// Password: "", // kalau pakai password, isi dari os.Getenv("REDIS_PASS")
-		DB: 0,
+		DB:   0,
 	})
 }
