@@ -7,9 +7,9 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
-func InitRedis(isProduction bool) (redisClient *redis.Client) {
+func InitRedis(isDocker bool) (redisClient *redis.Client) {
 	var redisOptions *redis.Options
-	if isProduction {
+	if isDocker {
 		redisOptions = &redis.Options{
 			Addr:     fmt.Sprintf("%v:%v", constant.REDIS_HOST, constant.REDIS_PORT),
 			Password: constant.REDIS_PASS,
