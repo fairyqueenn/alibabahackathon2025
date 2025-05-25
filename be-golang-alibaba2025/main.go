@@ -81,7 +81,8 @@ if err := godotenv.Load(envLocation); err != nil {
 	})))
 
 	// initial redis
-	redisClient := cfg.InitRedis()
+	cfg.InitRedis()
+	redisClient := cfg.RedisClient
 
 	// initial database
 	db := cfg.InitDB(isDocker, redisClient)
