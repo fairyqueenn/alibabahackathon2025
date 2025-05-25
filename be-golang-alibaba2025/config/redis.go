@@ -1,25 +1,30 @@
 package config
 
 import (
+	"os"
 	"fmt"
 
-	"github.com/ZihxS/be-alibabacloud-genai-2025/constant"
-	"github.com/go-redis/redis/v8"
+	"github.com/redis/go-redis/v9"
 )
 
-func InitRedis(isDocker bool) (redisClient *redis.Client) {
-	var redisOptions *redis.Options
-	if isDocker {
-		redisOptions = &redis.Options{
-			Addr:     fmt.Sprintf("%v:%v", constant.REDIS_HOST, constant.REDIS_PORT),
-			Password: constant.REDIS_PASS,
-		}
-	} else {
-		redisOptions = &redis.Options{
-			Addr: fmt.Sprintf("%v:%v", constant.REDIS_HOST, constant.REDIS_PORT),
-		}
+var RedisClient *redis.Client
+
+func InitRedis() {
+	host := os.Getenv("REDIS_HOST")
+	if host == "" {
+		host = "localhost" // fallback default, harusnya "redis" saat pakai docker-compose
 	}
 
-	redisClient = redis.NewClient(redisOptions)
-	return
+	port := os.Getenv("REDIS_PORT")
+	if port == "" {
+		port = "6379"
+	}
+
+	addr := fmt.Sprintf("%s:%s", host, port)
+
+	RedisClient = redis.NewClient(&redis.Options{
+		Addr: addr,
+		// Password: "", // kalau pakai password, isi dari os.Getenv("REDIS_PASS")
+		DB: 0,
+	})
 }
