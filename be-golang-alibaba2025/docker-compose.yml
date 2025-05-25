@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "1315:1315"
+    depends_on:
+      - db
+      - redis
+    restart: always
+
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+volumes:
+  dbdata:
+  redisdata:
