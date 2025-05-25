@@ -53,7 +53,7 @@ if err := godotenv.Load(envLocation); err != nil {
 	constant.InitRedisConstant()
 	constant.InitOSSConstant()
 
-	rateLimitStorage := cfg.InitLimiterStorage(*isProduction)
+	rateLimitStorage := cfg.InitLimiterStorage(*isDocker)
 	app := gin.New()
 	app.Use(gin.Recovery())
 
@@ -81,10 +81,10 @@ if err := godotenv.Load(envLocation); err != nil {
 	})))
 
 	// initial redis
-	redisClient := cfg.InitRedis(*isProduction)
+	redisClient := cfg.InitRedis(*isDocker)
 
 	// initial database
-	db := cfg.InitDB(*isProduction, redisClient)
+	db := cfg.InitDB(*isDocker, redisClient)
 
 	productRepository := product.NewRepository(db)
 	userRepository := user.NewRepository(db)
@@ -99,7 +99,7 @@ if err := godotenv.Load(envLocation); err != nil {
 	_ = aiHandler
 
 	// for activate release mode
-	if *isProduction {
+	if *isDocker {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
