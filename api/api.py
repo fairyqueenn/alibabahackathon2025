@@ -333,7 +333,7 @@ def nutrition_scoring(request: RecRquest):
         
         # Load and process documents
         try:
-            loader = TextLoader(r"data\Nutri Score.txt", encoding='utf-8')
+            loader = TextLoader("data/Nutri Score.txt", encoding='utf-8')
             docs = loader.load()
             
             if not docs:
