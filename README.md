@@ -30,7 +30,7 @@ Millions with diabetes, hypertension, and other conditions struggle to choose sa
 - **PAI** – AI Workflow Management  
 - **Qwen LLM** – Local Language AI  
 - **SAS** – Data Security  
-- **Golang** – Backend  
+- **Golang and FastAPI** – Backend  
 - **Python** – AI Model & Logic
 
 ---
