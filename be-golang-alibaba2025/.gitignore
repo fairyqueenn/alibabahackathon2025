@@ -1,0 +1,11 @@
+*DS_Store
+*whatsapp.db
+wa/src/storages/*
+.env
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
