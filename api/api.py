@@ -476,3 +476,21 @@ def nutrition_scoring(request: RecRquest):
             "error": str(e),
             "status": "error"
         }
+class SummaryRequest(BaseModel):
+    query: str     
+@router.post("/packaging_summaries")   
+def summaries(request: SummaryRequest):
+    dashscope.api_key = os.getenv('MODEL_API_KEY')
+
+    response = dashscope.Generation.call(
+        model='qwen-plus-latest',
+        prompt= prompt_templates.prompts.PACKAGING_SUMMARIES.format(context={request.query})
+    )
+
+    print("🤖 Response:")
+    print(response.output.text)
+    print(response.output)
+    
+    return {
+        'response': response.output.text,
+    }
