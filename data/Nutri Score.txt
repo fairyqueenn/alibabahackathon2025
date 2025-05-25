@@ -1,0 +1,45 @@
+Nutri Score:
+
+Data ini adalah sistem penilaian gizi yang mengategorikan makanan berdasarkan "poin negatif" dan "poin positif" untuk menentukan skor keseluruhan.
+
+**Poin Negatif (A, B, C, D):**
+Poin negatif diberikan berdasarkan kandungan nutrisi yang dianggap kurang menguntungkan untuk kesehatan. Semakin tinggi kandungan nutrisi ini, semakin tinggi poin negatifnya.
+
+* **A = Kepadatan Energi (Energy Density):**
+    * Diukur dalam kcal/100g atau kcal/100ml (untuk minuman).
+    * Rentang poin: 0 hingga 10.
+    * Contoh: Makanan dengan energi kurang dari 80 kcal/100g atau 7.2 kcal/100ml mendapat 0 poin, sedangkan makanan dengan lebih dari 800 kcal/100g atau 64.5 kcal/100ml mendapat 10 poin.
+* **B = Gula Sederhana (Simple Sugars):**
+    * Diukur dalam g/100g atau g/100ml (untuk minuman).
+    * Rentang poin: 0 hingga 10.
+    * Contoh: Makanan dengan gula kurang dari 4.5 g/100g atau 0 g/100ml mendapat 0 poin, sedangkan makanan dengan lebih dari 45.0 g/100g atau 13.5 g/100ml mendapat 10 poin.
+* **C = Lemak Jenuh (Saturated Fats):**
+    * Diukur dalam g/100g atau % (untuk lemak masak).
+    * Rentang poin: 0 hingga 10.
+    * Contoh: Makanan dengan lemak jenuh kurang dari 1 g/100g atau 10% mendapat 0 poin, sedangkan makanan dengan lebih dari 10 g/100g atau 64% mendapat 10 poin.
+* **D = Garam (Salt):**
+    * Diukur dalam mg/100g.
+    * Rentang poin: 0 hingga 10.
+    * Contoh: Makanan dengan garam kurang dari 90 mg/100g mendapat 0 poin, sedangkan makanan dengan lebih dari 900 mg/100g mendapat 10 poin.
+===[TEXT]===
+**Poin Positif (E, F, G):**
+Poin positif diberikan berdasarkan kandungan nutrisi yang dianggap bermanfaat untuk kesehatan. Semakin tinggi kandungan nutrisi ini, semakin tinggi poin positifnya.
+
+* **E = Buah dan Sayuran (Fruit and Vegetables):**
+    * Diukur dalam %.
+    * Rentang poin: 0 hingga 5.
+    * Contoh: Makanan dengan buah dan sayuran kurang dari 40% mendapat 0 poin, sedangkan makanan dengan lebih dari 80% mendapat 5 poin.
+* **F = Serat (Fibre):**
+    * Diukur dalam g/100g.
+    * Rentang poin: 0 hingga 5.
+    * Contoh: Makanan dengan serat kurang dari 0.7 g/100g mendapat 0 poin, sedangkan makanan dengan lebih dari 3.5 g/100g mendapat 5 poin.
+* **G = Protein (Protein):**
+    * Diukur dalam g/100g.
+    * Rentang poin: 0 hingga 5.
+    * Contoh: Makanan dengan protein kurang dari 1.6 g/100g mendapat 0 poin, sedangkan makanan dengan lebih dari 8.0 g/100g mendapat 5 poin.
+
+**Perhitungan Total Poin:**
+* **Total Poin Negatif:** A + B + C + D
+* **Total Poin Positif:** E + F + G
+
+Sistem ini memungkinkan penilaian gizi suatu produk makanan atau minuman dengan menjumlahkan poin-poin dari kategori negatif dan positif. Semakin rendah total poin negatif dan semakin tinggi total poin positif, semakin baik profil gizi produk tersebut.
