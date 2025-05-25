@@ -26,6 +26,10 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+    environment:
+      - REDIS_HOST = "redis"
+      - REDIS_PORT = "6379"
+      - REDIS_PASS = ""
     volumes:
       - redisdata:/data
 
