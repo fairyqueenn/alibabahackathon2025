@@ -18,6 +18,79 @@
         "documentation": {}
     },
     {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "ChatTongyi",
+        "importPath": "langchain_community.chat_models",
+        "description": "langchain_community.chat_models",
+        "isExtraImport": true,
+        "detail": "langchain_community.chat_models",
+        "documentation": {}
+    },
+    {
+        "label": "ChatTongyi",
+        "importPath": "langchain_community.chat_models",
+        "description": "langchain_community.chat_models",
+        "isExtraImport": true,
+        "detail": "langchain_community.chat_models",
+        "documentation": {}
+    },
+    {
+        "label": "ChatQwQ",
+        "importPath": "langchain_qwq",
+        "description": "langchain_qwq",
+        "isExtraImport": true,
+        "detail": "langchain_qwq",
+        "documentation": {}
+    },
+    {
+        "label": "ChatQwQ",
+        "importPath": "langchain_qwq",
+        "description": "langchain_qwq",
+        "isExtraImport": true,
+        "detail": "langchain_qwq",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "UploadFile",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "File",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -83,6 +156,14 @@
         "documentation": {}
     },
     {
+        "label": "uuid4",
+        "importPath": "uuid",
+        "description": "uuid",
+        "isExtraImport": true,
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
         "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
@@ -91,6 +172,54 @@
         "documentation": {}
     },
     {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "prompt_templates",
+        "importPath": "api.tools",
+        "description": "api.tools",
+        "isExtraImport": true,
+        "detail": "api.tools",
+        "documentation": {}
+    },
+    {
+        "label": "prompt_templates",
+        "importPath": "api.tools",
+        "description": "api.tools",
+        "isExtraImport": true,
+        "detail": "api.tools",
+        "documentation": {}
+    },
+    {
+        "label": "DashScopeEmbeddings",
+        "importPath": "langchain_community.embeddings.dashscope",
+        "description": "langchain_community.embeddings.dashscope",
+        "isExtraImport": true,
+        "detail": "langchain_community.embeddings.dashscope",
+        "documentation": {}
+    },
+    {
+        "label": "DashScopeEmbeddings",
+        "importPath": "langchain_community.embeddings.dashscope",
+        "description": "langchain_community.embeddings.dashscope",
+        "isExtraImport": true,
+        "detail": "langchain_community.embeddings.dashscope",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "importPath": "loguru",
+        "description": "loguru",
+        "isExtraImport": true,
+        "detail": "loguru",
+        "documentation": {}
+    },
+    {
         "label": "logger",
         "importPath": "loguru",
         "description": "loguru",
@@ -112,6 +241,86 @@
         "description": "loguru",
         "isExtraImport": true,
         "detail": "loguru",
+        "documentation": {}
+    },
+    {
+        "label": "CharacterTextSplitter",
+        "importPath": "langchain_text_splitters",
+        "description": "langchain_text_splitters",
+        "isExtraImport": true,
+        "detail": "langchain_text_splitters",
+        "documentation": {}
+    },
+    {
+        "label": "CharacterTextSplitter",
+        "importPath": "langchain_text_splitters",
+        "description": "langchain_text_splitters",
+        "isExtraImport": true,
+        "detail": "langchain_text_splitters",
+        "documentation": {}
+    },
+    {
+        "label": "TextLoader",
+        "importPath": "langchain_community.document_loaders",
+        "description": "langchain_community.document_loaders",
+        "isExtraImport": true,
+        "detail": "langchain_community.document_loaders",
+        "documentation": {}
+    },
+    {
+        "label": "TextLoader",
+        "importPath": "langchain_community.document_loaders",
+        "description": "langchain_community.document_loaders",
+        "isExtraImport": true,
+        "detail": "langchain_community.document_loaders",
+        "documentation": {}
+    },
+    {
+        "label": "PGVector",
+        "importPath": "langchain_postgres",
+        "description": "langchain_postgres",
+        "isExtraImport": true,
+        "detail": "langchain_postgres",
+        "documentation": {}
+    },
+    {
+        "label": "PGVector",
+        "importPath": "langchain_postgres",
+        "description": "langchain_postgres",
+        "isExtraImport": true,
+        "detail": "langchain_postgres",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain.prompts",
+        "description": "langchain.prompts",
+        "isExtraImport": true,
+        "detail": "langchain.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "ChatPromptTemplate",
+        "importPath": "langchain.prompts",
+        "description": "langchain.prompts",
+        "isExtraImport": true,
+        "detail": "langchain.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
+        "documentation": {}
+    },
+    {
+        "label": "PromptTemplate",
+        "importPath": "langchain_core.prompts",
+        "description": "langchain_core.prompts",
+        "isExtraImport": true,
+        "detail": "langchain_core.prompts",
         "documentation": {}
     },
     {
@@ -120,6 +329,31 @@
         "description": "dotenv",
         "isExtraImport": true,
         "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "warnings",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "warnings",
+        "description": "warnings",
+        "detail": "warnings",
+        "documentation": {}
+    },
+    {
+        "label": "Document",
+        "importPath": "langchain.schema",
+        "description": "langchain.schema",
+        "isExtraImport": true,
+        "detail": "langchain.schema",
         "documentation": {}
     },
     {
@@ -156,6 +390,69 @@
         "documentation": {}
     },
     {
+        "label": "prompts",
+        "kind": 6,
+        "importPath": "api.tools.prompt_templates",
+        "description": "api.tools.prompt_templates",
+        "peekOfCode": "class prompts:\n    image_reviewer = \"\"\"\n- Generate output as JSON only in {language} language\n- JSON output must be minified, avoid additional characters\n- Do not use markdown code blocks like \"```json\" and \"```\"\n- this is the example of JSON output:\n    {{\n        \"description\":\n    \"{description}\",\n- Here's the translation of your request regarding measurements:",
+        "detail": "api.tools.prompt_templates",
+        "documentation": {}
+    },
+    {
+        "label": "queryRequest",
+        "kind": 6,
+        "importPath": "api.api copy",
+        "description": "api.api copy",
+        "peekOfCode": "class queryRequest(BaseModel):\n    query:str\nimage_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:\n        file_bytes = await file.read()\n        image_base64 = base64.b64encode(file_bytes).decode('utf-8')\n        image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'\n        image_data_url = f\"data:image/{image_format};base64,{image_base64}\"",
+        "detail": "api.api copy",
+        "documentation": {}
+    },
+    {
+        "label": "ReviewRequest",
+        "kind": 6,
+        "importPath": "api.api copy",
+        "description": "api.api copy",
+        "peekOfCode": "class ReviewRequest(BaseModel):\n    image_url: str\n    description: str\n@router.post(\"/image_reviewer\")\ndef image_reviewer(request: ReviewRequest):\n    try:\n        dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\n        messages = [\n            {\n                \"role\": \"user\",",
+        "detail": "api.api copy",
+        "documentation": {}
+    },
+    {
+        "label": "image_reviewer",
+        "kind": 2,
+        "importPath": "api.api copy",
+        "description": "api.api copy",
+        "peekOfCode": "def image_reviewer(request: ReviewRequest):\n    try:\n        dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\n        messages = [\n            {\n                \"role\": \"user\",\n                \"content\": [\n                    {\"image\": request.image_url},\n                    {\"text\": prompt_templates.prompts.image_reviewer.format(description=request.description)}\n                ]",
+        "detail": "api.api copy",
+        "documentation": {}
+    },
+    {
+        "label": "embedding_query",
+        "kind": 2,
+        "importPath": "api.api copy",
+        "description": "api.api copy",
+        "peekOfCode": "def embedding_query(request: queryRequest):\n    try:\n        # Validate API key\n        api_key = os.getenv(\"MODEL_API_KEY\")\n        if not api_key:\n            raise ValueError(\"MODEL_API_KEY environment variable is not set\")\n        print(f\"API Key loaded: {api_key[:10]}...\" if len(api_key) > 10 else \"API Key too short\")\n        # Initialize embeddings and model\n        try:\n            embeddings = DashScopeEmbeddings(",
+        "detail": "api.api copy",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "api.api copy",
+        "description": "api.api copy",
+        "peekOfCode": "router = APIRouter()\nclass queryRequest(BaseModel):\n    query:str\nimage_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:\n        file_bytes = await file.read()\n        image_base64 = base64.b64encode(file_bytes).decode('utf-8')\n        image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'",
+        "detail": "api.api copy",
+        "documentation": {}
+    },
+    {
+        "label": "image_store",
+        "kind": 5,
+        "importPath": "api.api copy",
+        "description": "api.api copy",
+        "peekOfCode": "image_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:\n        file_bytes = await file.read()\n        image_base64 = base64.b64encode(file_bytes).decode('utf-8')\n        image_format = file.content_type.split('/')[-1]  # e.g., 'png', 'jpeg'\n        image_data_url = f\"data:image/{image_format};base64,{image_base64}\"\n        image_id = str(uuid4())\n        image_store[image_id] = image_data_url",
+        "detail": "api.api copy",
+        "documentation": {}
+    },
+    {
         "label": "queryRequest",
         "kind": 6,
         "importPath": "api.api",
@@ -169,7 +466,34 @@
         "kind": 6,
         "importPath": "api.api",
         "description": "api.api",
-        "peekOfCode": "class ReviewRequest(BaseModel):\n    image_id: str\n    query: str\n@router.post(\"/image_reviewer\")\ndef image_reviewer(request: ReviewRequest):\n    try:\n        image_data_url = image_store.get(request.image_id)\n        print(f\"Image data URL: {image_data_url}\")\n        if not image_data_url:\n            raise HTTPException(status_code=404, detail=\"Image not found.\")",
+        "peekOfCode": "class ReviewRequest(BaseModel):\n    image_url: str\n    description: str\n    language: str\n@router.post(\"/image_reviewer\")\ndef image_reviewer(request: ReviewRequest):\n    try:\n        dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\n        messages = [\n            {",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "RecRquest",
+        "kind": 6,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "class RecRquest(BaseModel):\n    query: str\n@router.post(\"/embedding_query\")\ndef embedding_query(request: RecRquest):\n    try:\n        # Validate API key\n        api_key = os.getenv(\"MODEL_API_KEY\")\n        if not api_key:\n            raise ValueError(\"MODEL_API_KEY environment variable is not set\")\n        print(f\"API Key loaded: {api_key[:10]}...\" if len(api_key) > 10 else \"API Key too short\")",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "RecRquest",
+        "kind": 6,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "class RecRquest(BaseModel):\n    query: str\n@router.post(\"/nutrition_scoring\")\ndef nutrition_scoring(request: RecRquest):\n    try:\n        # Validate API key\n        api_key = os.getenv(\"MODEL_API_KEY\")\n        if not api_key:\n            raise ValueError(\"MODEL_API_KEY environment variable is not set\")\n        print(f\"API Key loaded: {api_key[:10]}...\" if len(api_key) > 10 else \"API Key too short\")",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "SummaryRequest",
+        "kind": 6,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "class SummaryRequest(BaseModel):\n    query: str     \n@router.post(\"/packaging_summaries\")   \ndef summaries(request: SummaryRequest):\n    dashscope.api_key = os.getenv('MODEL_API_KEY')\n    response = dashscope.Generation.call(\n        model='qwen-plus-latest',\n        prompt= prompt_templates.prompts.PACKAGING_SUMMARIES.format(context={request.query})\n    )\n    print(\"🤖 Response:\")",
         "detail": "api.api",
         "documentation": {}
     },
@@ -178,7 +502,43 @@
         "kind": 2,
         "importPath": "api.api",
         "description": "api.api",
-        "peekOfCode": "def image_reviewer(request: ReviewRequest):\n    try:\n        image_data_url = image_store.get(request.image_id)\n        print(f\"Image data URL: {image_data_url}\")\n        if not image_data_url:\n            raise HTTPException(status_code=404, detail=\"Image not found.\")\n        dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\n        messages = [\n            {\n                \"role\": \"user\",",
+        "peekOfCode": "def image_reviewer(request: ReviewRequest):\n    try:\n        dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\n        messages = [\n            {\n                \"role\": \"user\",\n                \"content\": [\n                    {\"image\": request.image_url},\n                    {\"text\": prompt_templates.prompts.image_reviewer.format(description=request.description, language=request.language)}\n                ]",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "embedding_query",
+        "kind": 2,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "def embedding_query(request: RecRquest):\n    try:\n        # Validate API key\n        api_key = os.getenv(\"MODEL_API_KEY\")\n        if not api_key:\n            raise ValueError(\"MODEL_API_KEY environment variable is not set\")\n        print(f\"API Key loaded: {api_key[:10]}...\" if len(api_key) > 10 else \"API Key too short\")\n        # Initialize embeddings and model\n        try:\n            embeddings = DashScopeEmbeddings(",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "nutrition_scoring",
+        "kind": 2,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "def nutrition_scoring(request: RecRquest):\n    try:\n        # Validate API key\n        api_key = os.getenv(\"MODEL_API_KEY\")\n        if not api_key:\n            raise ValueError(\"MODEL_API_KEY environment variable is not set\")\n        print(f\"API Key loaded: {api_key[:10]}...\" if len(api_key) > 10 else \"API Key too short\")\n        # Initialize embeddings and model\n        try:\n            embeddings = DashScopeEmbeddings(",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "summaries",
+        "kind": 2,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "def summaries(request: SummaryRequest):\n    dashscope.api_key = os.getenv('MODEL_API_KEY')\n    response = dashscope.Generation.call(\n        model='qwen-plus-latest',\n        prompt= prompt_templates.prompts.PACKAGING_SUMMARIES.format(context={request.query})\n    )\n    print(\"🤖 Response:\")\n    print(response.output.text)\n    print(response.output)\n    return {",
+        "detail": "api.api",
+        "documentation": {}
+    },
+    {
+        "label": "dashscope.base_http_api_url",
+        "kind": 5,
+        "importPath": "api.api",
+        "description": "api.api",
+        "peekOfCode": "dashscope.base_http_api_url = 'https://dashscope-intl.aliyuncs.com/api/v1'\nimport warnings\nwarnings.filterwarnings(\"ignore\", category=RuntimeWarning, module=\"numpy\")\nrouter = APIRouter()\nclass queryRequest(BaseModel):\n    query:str\nimage_store = {}\n@router.post(\"/upload_image\")\nasync def upload_image(file: UploadFile = File(...)):\n    try:",
         "detail": "api.api",
         "documentation": {}
     },
