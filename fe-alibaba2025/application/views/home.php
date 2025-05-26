@@ -24,44 +24,7 @@
             </div>
         </div>
         <div>
-            <div class="wrapper-container" id="wc">
-                <!-- <div class="card mb-2">
-                    <div class="card-body p-2">
-                        <div class="row">
-                            <div class="col-5">
-                                <img class="object-fit-cover" src="<?= base_url('assets/img/martabak.jpeg'); ?>" style="width: 100%; height: 125px; border-radius: 5px; border: 1px solid #ccc;">
-                            </div>
-                            <div class="col-7 d-flex flex-column justify-content-between" style="margin-left: -12.5px;">
-                                <div>
-                                    <h1 style="font-size: 18px;">Martabak Manis</h1>
-                                    <p style="font-size: 12px; margin-top: -5px !important;" class="text-muted pb-0 mb-1">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis minima quod provident?
-                                    </p>
-                                </div>
-                                <span>Rp1.000.000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-2">
-                    <div class="card-body p-2">
-                        <div class="row">
-                            <div class="col-5">
-                                <img class="object-fit-cover" src="<?= base_url('assets/img/martabak.jpeg'); ?>" style="width: 100%; height: 125px; border-radius: 5px; border: 1px solid #ccc;">
-                            </div>
-                            <div class="col-7 d-flex flex-column justify-content-between" style="margin-left: -12.5px;">
-                                <div>
-                                    <h1 style="font-size: 18px;">Martabak Manis</h1>
-                                    <p style="font-size: 12px; margin-top: -5px !important;" class="text-muted pb-0 mb-1">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis minima quod provident?
-                                    </p>
-                                </div>
-                                <span>Rp1.000.000</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
+            <div class="wrapper-container" id="wc"></div>
         </div>
     </div>
     <?php $this->load->view('template/mandatory_script', NULL, FALSE); ?>
@@ -81,7 +44,7 @@
                     if (response.code == 200) {
                         for (let i = 0; i < response.data.length; i++) {
                             const element = response.data[i];
-                            $('#wc').append(`<div class="card mb-3 card-product" onclick="document.location.href = 'detail/${element.id}';">
+                            $('#wc').append(`<div class="card mb-3 card-product" onclick="document.location.href = 'App/detail/${element.id}';">
                                 <div class="card-body p-2">
                                     <div class="row">
                                         <div class="col-5">

@@ -18,9 +18,9 @@ class App extends CI_Controller
         $this->load->view('add', NULL);
     }
 
-    public function detail()
+    public function detail($id)
     {
-        $this->load->view('detail', NULL);
+        $this->load->view('detail', ["id" => $id]);
     }
 
     public function order()
